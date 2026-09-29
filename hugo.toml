@@ -1,0 +1,19 @@
+baseURL = "https://drrandom.org/"
+languageCode = "en-gb"
+title = "Dr. Random"
+theme = "PaperMod"
+
+# Match WordPress permalinks (e.g. /2012/03/20/sometimes-doing-the-right-thing-is-still-not-the-right-thing/)
+# so existing inbound links keep working.
+[permalinks]
+  posts = "/:year/:month/:day/:slug/"
+
+[params]
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  defaultTheme = "auto"
+
+[markup.goldmark.renderer]
+  # Converted WordPress posts contain inline HTML
+  unsafe = true

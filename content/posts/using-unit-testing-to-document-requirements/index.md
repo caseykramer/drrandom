@@ -1,0 +1,18 @@
+---
+url: "/2007/06/01/using-unit-testing-to-document-requirements/"
+title: "Using Unit Testing To Document Requirements"
+date: 2007-06-01T15:17:02.000Z
+slug: "using-unit-testing-to-document-requirements"
+tags: 
+  - "tdd"
+---
+
+Here is something I've been kicking around in my head for a while, and thought I would put it down in more or less a "permanent" format so maybe I'll do something about it sometime...
+
+Back when I was first trying to get my head around TDD, one of the things that I found most clarifying was an idea I first saw in [Test Driven Development in Microsoft .Net](http://www.amazon.com/Test-Driven-Development-Microsoft-NET-Professional/dp/0735619484 "Test Driven Development in Microsoft .Net") (Microsoft Press).  The idea is that you write tests based on your requirements.  So as a developer, you should have hopefully been given a list of requirements by someone for the project you are working on.  When you go to build the software you start looking at the requirements list, and the pick on (usually a simple one) to start implementing.  Once you have your requirement you start brainstorming tests that can be implemented to fulfill that requirement.  Once you can no longer think of tests for a requirement, you move on to the next one.  After that once you have run out of requirements, then your done writing the software.
+
+This struck me not only as a good way to approach the problem of how do I come up with tests, but also as a potentially powerful tool for tracking progress within a project.  I can imagine something not unlike the NUnit Test Runner that, instead of listing all of the tests, lists all of the requirements.  If there are tests written for a requirement, then you could potentially expand the requirement to see the list of tests.  When you execute the tests, you can then see which requirements are complete (more on this in a minute), and also which ones are functional.  The assumption being, if a test fails, then there is a functional problem with the requirements.
+
+To support this a few modifications to the standard TDD toolset may be needed.  First a place to put the list of requirements in code would be useful.  This could be an XML document with the test descriptions and IDs, or maybe even a plain text document, or a piece of code.  I actually like the idea of the XML document because potentially you could build an InfoPath form or something that a BA could use to put together the requirement list, and then hand the XML doc over to the development team.  From there an additional attribute would be added to the NUnit tests, so that a specific test could be associated with a specific requirement.  If you wanted to be able to give a "percentage implemented" on a requirement, then you would probably want to do something like create all of the test methods you can come up with during a brainstorming session, and put an Ignore attribute on them.  At that point it should be feasible to see how many of the methods are implemented, and how many are still being Ignored, and then grab a percentage.  This number would change as time progressed and the development team came up with additional tests for specific requirements, but it would probably stabilize by the time serious work started into a specific requirement.
+
+So that's it...my brilliant idea.  I actually think there wouldn't be a whole lot of work involved in getting it going either...A new attribute, an updated Unit Test Runner, and some XML work.  It would be nice to be able to define the requirements in a way that would let you use Intellisense to select the requirements while in VS.Net....maybe code-generate a struct or enum based on the XML doc?
