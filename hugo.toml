@@ -1,5 +1,5 @@
 baseURL = "https://drrandom.org/"
-languageCode = "en-gb"
+locale = "en-gb"
 title = "Dr. Random"
 theme = "PaperMod"
 
